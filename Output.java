@@ -91,10 +91,14 @@ public class Output {
             //操作数
             if(instruction.getX() != null){
                 //只有push的操作数是64位
-                if(opInt == 1)
+                if(opInt == 1) {
                     addLong(8, (Long) instruction.getX());
-                else
+                    System.out.println("end transferfunction4.1.");
+                }
+                else {
                     addInt(4, (int) instruction.getX());
+                    System.out.println("end transferfunction4.2.");
+                }
             }
             System.out.println("end transferfunction5.");
         }
