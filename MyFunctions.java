@@ -128,34 +128,20 @@ public class MyFunctions {
             default:
                 break;
         }
-
     }
 
-    /**
-     * 根据函数名字得到函数存储的id
-     * @param name
-     * @param functionTable
-     * @return
-     */
+    /** 由函数名查找函数id */
     public static int getFunctionId(String name, List<Function> functionTable){
         for (int i=0 ; i<functionTable.size(); i++) {
-            if (functionTable.get(i).getName().equals(name)) return i;
+            if (functionTable.get(i).getName().equals(name))
+                return i;
         }
         return -1;
-//        for (Function function : functionTable) {
-//            if (function.getName().equals(name)) return function.getId();
-//        }
-//        return -1;
     }
 
-    /**
-     * 判断函数有没有返回值
-     * @param name
-     * @param functionTable
-     * @return
-     */
+    /** 判断函数是否有返回值 */
     public static boolean functionHasReturn(String name, List<Function> functionTable) {
-        //如果是库函数
+        //库函数
         if (name.equals("getint") || name.equals("getdouble") || name.equals("getchar"))
                 return true;
         //如果是自定义函数

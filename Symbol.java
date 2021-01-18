@@ -1,16 +1,6 @@
-
-
 import java.util.ArrayList;
 import java.util.List;
 
-//写文件方式
-//try {
-//        FileWriter out =new FileWriter("oo.txt", true);
-//        out.write("00 01");
-//        out.close();
-//        System.out.println("文件创建成功！");
-//        } catch (IOException e) {
-//        }
 public class Symbol {
     //标识符的名字
     String name;

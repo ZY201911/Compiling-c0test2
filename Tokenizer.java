@@ -2,7 +2,7 @@ import java.sql.SQLOutput;
 import java.util.regex.Pattern;
 
 public class Tokenizer {
-
+    // 字符迭代器
     private StringIter it;
 
     public Tokenizer(StringIter it) {
@@ -11,12 +11,7 @@ public class Tokenizer {
 
     // 这里本来是想实现 Iterator<Token> 的，但是 Iterator 不允许抛异常，于是就这样了
 
-    /**
-     * 获取下一个 Token
-     *
-     * @return
-     * @throws TokenizeError 如果解析有异常则抛出
-     */
+    /** 获取下一个 Token */
     public Token nextToken() throws TokenizeError {
         it.readAll();
 
