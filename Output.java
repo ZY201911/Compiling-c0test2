@@ -100,7 +100,8 @@ public class Output {
                     System.out.println("end transferfunction4.1.");
                 }
                 else {
-                    addInt(4, (int) instruction.getX());
+                    int in = Integer.parseInt(String.valueOf(instruction.getX()));
+                    addInt(4, in);
                     System.out.println("end transferfunction4.2.");
                 }
             }
