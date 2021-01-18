@@ -34,7 +34,6 @@ public class Output {
         for(Global global:globalTable){
             //1.is_const
             addInt(1, global.getIsConst());
-
             //2.value.count
             //3.value.items
             //如果是全局变量或者全局常量

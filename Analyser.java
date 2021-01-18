@@ -246,7 +246,7 @@ public final class Analyser {
             exprType = analyseExpr();
             // 构造表达式指令
             while (!op.empty())
-                MyFunctions.operatorInstructions(op.pop(), instructions, exprType);
+                UtilFunctions.operatorInstructions(op.pop(), instructions, exprType);
             // 存储
             instruction = new Instruction("store.64", null);
             instructions.add(instruction);
@@ -301,7 +301,7 @@ public final class Analyser {
         expect(TokenType.ASSIGN);
         exprType = analyseExpr();
         while (!op.empty())
-            MyFunctions.operatorInstructions(op.pop(), instructions, exprType);
+            UtilFunctions.operatorInstructions(op.pop(), instructions, exprType);
 
         instruction = new Instruction("store.64", null);
         instructions.add(instruction);
@@ -443,7 +443,7 @@ public final class Analyser {
         expect(TokenType.ASSIGN);
         String exprType = analyseExpr();
         while (!op.empty())
-            MyFunctions.operatorInstructions(op.pop(), instructions, exprType);
+            UtilFunctions.operatorInstructions(op.pop(), instructions, exprType);
         //常量报错
         if (symbol.isConst)
             throw new AnalyzeError(ErrorCode.Break, peekedToken.getStartPos());
@@ -471,14 +471,14 @@ public final class Analyser {
         else{
             if(!symbol.getType().equals("function"))
                 throw new AnalyzeError(ErrorCode.Break, ident.getStartPos());
-            int id = MyFunctions.getFunctionId(symbol.getName(), functionTable);
+            int id = UtilFunctions.getFunctionId(symbol.getName(), functionTable);
             instruction = new Instruction("call", id + 1);
         }
         String name = symbol.getName();
         // (
         expect(TokenType.L_PAREN);
         op.push(TokenType.L_PAREN);
-        if (MyFunctions.functionHasReturn(name, functionTable))
+        if (UtilFunctions.functionHasReturn(name, functionTable))
             instructions.add(new Instruction("stackalloc", 1));
         else
             instructions.add(new Instruction("stackalloc", 0));
@@ -549,7 +549,7 @@ public final class Analyser {
         int paramNum = params.size();
         String type = analyseExpr();
         while (!op.empty() && op.peek() != TokenType.L_PAREN)
-            MyFunctions.operatorInstructions(op.pop(), instructions, type);
+            UtilFunctions.operatorInstructions(op.pop(), instructions, type);
 
         if(!params.get(i).getType().equals(type))
             throw new AnalyzeError(ErrorCode.Break, peekedToken.getStartPos());
@@ -558,12 +558,12 @@ public final class Analyser {
             next();
             type = analyseExpr();
             while (!op.empty() && op.peek() != TokenType.L_PAREN)
-                MyFunctions.operatorInstructions(op.pop(), instructions, type);
+                UtilFunctions.operatorInstructions(op.pop(), instructions, type);
 
             if(!params.get(i).getType().equals(type))
                 throw new AnalyzeError(ErrorCode.Break, peekedToken.getStartPos());
             while (!op.empty() && op.peek() != TokenType.L_PAREN)
-                MyFunctions.operatorInstructions(op.pop(), instructions, type);
+                UtilFunctions.operatorInstructions(op.pop(), instructions, type);
             i++;
         }
         if(i != paramNum)
@@ -645,7 +645,7 @@ public final class Analyser {
         String exprType = analyseExpr();
         expect(TokenType.R_PAREN);
         while (op.peek() != TokenType.L_PAREN)
-            MyFunctions.operatorInstructions(op.pop(), instructions, exprType);
+            UtilFunctions.operatorInstructions(op.pop(), instructions, exprType);
         op.pop();
         return exprType;
     }
@@ -678,7 +678,7 @@ public final class Analyser {
             int in = Operator.getOrder(op.peek());
             int out = Operator.getOrder(token.getTokenType());
             if (Operator.priority[in][out] > 0)
-                MyFunctions.operatorInstructions(op.pop(), instructions, exprType);
+                UtilFunctions.operatorInstructions(op.pop(), instructions, exprType);
         }
         op.push(token.getTokenType());
 
@@ -841,7 +841,7 @@ public final class Analyser {
         expect(TokenType.IF_KW);
         String type = analyseExpr();
         while (!op.empty())
-            MyFunctions.operatorInstructions(op.pop(), instructions, type);
+            UtilFunctions.operatorInstructions(op.pop(), instructions, type);
         if(!type.equals("int") && !type.equals("double"))
             throw new AnalyzeError(ErrorCode.Break, peekedToken.getStartPos());
         instructions.add(new Instruction("br.true", 1));
@@ -895,7 +895,7 @@ public final class Analyser {
 
         String type = analyseExpr();
         while (!op.empty())
-            MyFunctions.operatorInstructions(op.pop(), instructions, type);
+            UtilFunctions.operatorInstructions(op.pop(), instructions, type);
         if(!type.equals("int") && !type.equals("double"))
             throw new AnalyzeError(ErrorCode.Break, peekedToken.getStartPos());
 
@@ -943,7 +943,7 @@ public final class Analyser {
             instructions.add(new Instruction("arga", 0));
             type = analyseExpr();
             while (!op.empty())
-                MyFunctions.operatorInstructions(op.pop(), instructions, type);
+                UtilFunctions.operatorInstructions(op.pop(), instructions, type);
 
             instructions.add(new Instruction("store.64", null));
         }
@@ -959,7 +959,7 @@ public final class Analyser {
         returnFunction = presentFunction;
 
         while (!op.empty())
-            MyFunctions.operatorInstructions(op.pop(), instructions, type);
+            UtilFunctions.operatorInstructions(op.pop(), instructions, type);
         instructions.add(new Instruction("ret", null));
     }
 
@@ -994,7 +994,7 @@ public final class Analyser {
     private void analyseExprStmt() throws CompileError{
         String exprType = analyseExpr();
         while (!op.empty())
-            MyFunctions.operatorInstructions(op.pop(), instructions, exprType);
+            UtilFunctions.operatorInstructions(op.pop(), instructions, exprType);
         expect(TokenType.SEMICOLON);
     }
 

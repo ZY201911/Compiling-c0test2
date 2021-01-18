@@ -1,6 +1,6 @@
 import java.util.List;
 
-public class MyFunctions {
+public class UtilFunctions {
     //运算符指令
     //目前只支持int，double
     public static void operatorInstructions(TokenType calculate, List<Instruction> instructions, String type) throws AnalyzeError{
