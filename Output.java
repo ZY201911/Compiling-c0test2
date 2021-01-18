@@ -77,13 +77,17 @@ public class Output {
         addInt(4, function.getLocSlots());
         //5.body.count
         addInt(4, function.getBody().size());
+        System.out.println("end transferfunction1.");
         //6.body.items
         List<Instruction> instructions = function.getBody();
+        System.out.println("end transferfunction2.");
         for(Instruction instruction:instructions){
             String op = instruction.getOp();
+            System.out.println("end transferfunction3.");
             //指令
             int opInt = operations.get(op);
             addInt(1, opInt);
+            System.out.println("end transferfunction4.");
             //操作数
             if(instruction.getX() != null){
                 //只有push的操作数是64位
@@ -92,6 +96,7 @@ public class Output {
                 else
                     addInt(4, (int) instruction.getX());
             }
+            System.out.println("end transferfunction5.");
         }
     }
 
