@@ -89,8 +89,8 @@ public class Output {
             addInt(1, opInt);
             System.out.println("end transferfunction4.---"+opInt);
             //操作数
-            Object i = instruction.getX();
-            System.out.println(i);
+            long i = (long) instruction.getX();
+            System.out.println("long "+i);
             if(instruction.getX() != null){
                 //只有push的操作数是64位
                 if(opInt == 1) {
