@@ -118,10 +118,14 @@ public class Output {
 
     private void addLong(int length, long x){
         int start = 8 * (length-1);
+        System.out.println("addLong1");
         for(int i = 0 ; i < length; i++){
             long part = x >> ( start - i * 8 ) & 0xFF;
+            System.out.println("addLong2");
             byte b = (byte) part;
+            System.out.println("addLong3");
             output.add(b);
+            System.out.println("addLong4");
         }
     }
 
