@@ -94,7 +94,8 @@ public class Output {
             if(instruction.getX() != null){
                 //只有push的操作数是64位
                 if(opInt == 1) {
-                    addLong(8, (Long) instruction.getX());
+                    System.out.println("opInt == 1");
+                    addLong(8, (long) instruction.getX());
                     System.out.println("end transferfunction4.1.");
                 }
                 else {
