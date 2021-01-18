@@ -83,12 +83,14 @@ public class Output {
         System.out.println("end transferfunction2.");
         for(Instruction instruction:instructions){
             String op = instruction.getOp();
-            System.out.println("end transferfunction3.");
+            System.out.println("end transferfunction3.---"+op);
             //指令
             int opInt = operations.get(op);
             addInt(1, opInt);
-            System.out.println("end transferfunction4.");
+            System.out.println("end transferfunction4.---"+opInt);
             //操作数
+            Object i = instruction.getX();
+            System.out.println(i);
             if(instruction.getX() != null){
                 //只有push的操作数是64位
                 if(opInt == 1) {
