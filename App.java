@@ -25,19 +25,25 @@ public class App {
             for (Function function : analyser.getFunctionTable()) {
                 System.out.println(function);
             }
+            System.out.println("end of table.");
 
             //将表转为.o0
             Output out = new Output(analyser.getGlobalTable(), analyser.getFunctionTable(), analyser.get_start());
+            System.out.println("end of output.");
             List<Byte> bytes = out.transfer();
+            System.out.println("end of transfer.");
             byte[] result = new byte[bytes.size()];
             for (int i = 0; i < bytes.size(); ++i) {
                 result[i] = bytes.get(i);
             }
+            System.out.println("end of result.");
 
             //输出
             //DataOutputStream output = new DataOutputStream(new FileOutputStream(new File("output.txt")));
             DataOutputStream output = new DataOutputStream(new FileOutputStream(new File(args[1])));
+            System.out.println("end of dops.");
             output.write(result);
+            System.out.println("end of write.");
         }
         catch (Exception e){
             System.exit(-1);
