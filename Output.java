@@ -26,9 +26,11 @@ public class Output {
         addInt(4, magic);
         addInt(4, version);
 
+        System.out.println("end transfer1.");
+
         //放globals.count
         addInt(4, globalTable.size());
-
+        System.out.println("end transfer2.");
 
         //放全局变量
         for(Global global:globalTable){
@@ -48,19 +50,19 @@ public class Output {
                 addString(global.getItems());
             }
         }
-
+        System.out.println("end transfer3.");
 
         //放functions.count
         addInt(4, functionTable.size() + 1);
-
+        System.out.println("end transfer4.");
         //放_start
         transferFunction(_start);
+        System.out.println("end transfer5.");
 
         //放其他函数
         for(Function function:functionTable)
             transferFunction(function);
-
-
+        System.out.println("end transfer6.");
         return output;
     }
 
