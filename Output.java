@@ -89,13 +89,14 @@ public class Output {
             addInt(1, opInt);
             System.out.println("end transferfunction4.---"+opInt);
             //操作数
-            long i = (long) instruction.getX();
-            System.out.println("long "+i);
+            Object i = instruction.getX();
+            System.out.println(i);
             if(instruction.getX() != null){
                 //只有push的操作数是64位
                 if(opInt == 1) {
                     System.out.println("opInt==1");
-                    addLong(8, (long) instruction.getX());
+                    long l = Long.valueOf(String.valueOf(instruction.getX()));
+                    addLong(8, l);
                     System.out.println("end transferfunction4.1.");
                 }
                 else {
